@@ -1,5 +1,7 @@
 package com.globant.tests;
 
+import com.globant.components.TopBarComponent;
+import com.globant.pages.InventoryPage;
 import com.globant.pages.LoginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -11,27 +13,27 @@ import org.testng.annotations.Parameters;
 
 public class BaseTest {
     protected WebDriver driver;
-    protected LoginPage loginPage;
+    protected InventoryPage inventoryPage;
 
+    protected TopBarComponent topBarComponent;
     @BeforeSuite(alwaysRun = true)
     public void webDriverSetup(){
-        /*WebDriverManager.chromedriver().setup();*/
-        System.out.println("WebDriver setup done");
+        WebDriverManager.chromedriver().setup();
     }
 
-    @Parameters("url")
+    @Parameters({"url","username","password"})
     @BeforeMethod(alwaysRun = true)
-    public void testSetup (String url) {
-        /*driver = new ChromeDriver();
+    public void testSetup (String url,String username, String password) {
+        driver = new ChromeDriver();
         driver.get(url);
         driver.manage().window().maximize();
-        loginPage = new LoginPage(driver);*/
-        System.out.println("Test setup done");
+        LoginPage loginPage = new LoginPage(driver);
+        inventoryPage = loginPage.login(username,password);
+        topBarComponent = new TopBarComponent(driver);
     }
 
     @AfterMethod(alwaysRun = true)
     public void testTeardown(){
-        /*driver.quit();*/
-        System.out.println("Test teardown done");
+        driver.quit();
     }
 }

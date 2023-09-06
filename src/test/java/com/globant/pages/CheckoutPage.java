@@ -11,7 +11,7 @@ public class CheckoutPage extends BasePage {
     @FindBy(id="last-name")
     private WebElement lastNameInput;
     @FindBy(id="postal-code")
-    private WebElement postalCodeInput;
+    private WebElement zipCodeInput;
     @FindBy(id="continue")
     private WebElement continueButton;
 
@@ -19,13 +19,26 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
 
-    public void enterPersonalInfo() {
-        typeText(firstNameInput,"Alejandro");
-        typeText(lastNameInput,"Fonseca");
-        typeText(postalCodeInput, "760001");
+    public void enterPersonalInfo(String firstName, String lastName, String zipCode) {
+        typeText(firstNameInput,firstName);
+        typeText(lastNameInput,lastName);
+        typeText(zipCodeInput, zipCode);
     }
 
-    public void continueCheckout() {
+    public WebElement getFirstNameInput() {
+        return firstNameInput;
+    }
+
+    public WebElement getLastNameInput() {
+        return lastNameInput;
+    }
+
+    public WebElement getZipCodeInput() {
+        return zipCodeInput;
+    }
+
+    public OverviewPage goToOverviewPage() {
         clickElement(continueButton);
+        return new OverviewPage(getDriver());
     }
 }

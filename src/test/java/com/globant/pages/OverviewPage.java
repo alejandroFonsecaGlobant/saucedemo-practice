@@ -12,7 +12,8 @@ public class OverviewPage extends BasePage {
         super(driver);
     }
 
-    public void finishCheckout() {
+    public ThankYouPage finishCheckout() {
         clickElement(finishButton);
+        return new ThankYouPage(getDriver());
     }
 }

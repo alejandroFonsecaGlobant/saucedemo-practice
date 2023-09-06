@@ -14,13 +14,18 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver){
         super(driver);
     }
-    public void login(String username, String password) {
+    public InventoryPage login(String username, String password) {
         typeText(usernameInput,username);
         typeText(passwordInput,password);
         clickElement(loginButton);
+        return new InventoryPage(getDriver());
     }
 
     public String getLoginHeaderText() {
         return loginHeader.getText();
+    }
+
+    public WebElement getLoginButton(){
+        return loginButton;
     }
 }

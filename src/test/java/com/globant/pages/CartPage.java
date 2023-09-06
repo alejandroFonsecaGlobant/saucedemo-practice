@@ -17,7 +17,7 @@ public class CartPage extends BasePage{
     private WebElement removeBackpackButton;
     @FindBy(id="checkout")
     private WebElement checkoutButton;
-    @FindBy(className = "cart-list")
+    @FindBy(className = "cart_list")
     private WebElement cartListDiv;
     public CartPage(WebDriver driver) {
         super(driver);
@@ -31,10 +31,11 @@ public class CartPage extends BasePage{
 
 
     public List<WebElement> getCartItems() {
-        return cartListDiv.findElements(By.cssSelector("div.cart-item"));
+        return cartListDiv.findElements(By.cssSelector("div.cart_item"));
     }
 
-    public void checkout(){
+    public CheckoutPage goToCheckoutPage(){
         clickElement(checkoutButton);
+        return new CheckoutPage(getDriver());
     }
 }
