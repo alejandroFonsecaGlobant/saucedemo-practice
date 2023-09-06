@@ -2,14 +2,17 @@
 
 <suite name="SauceDemo test suite" verbose="1">
     
+    <listeners>
+        <listener class-name="com.globant.Listener"/>
+    </listeners>
+    
     <parameter name="url" value="https://www.saucedemo.com/"/>
     <parameter name="username" value="standard_user"/>
     <parameter name="password" value="secret_sauce"/>
     <parameter name="firstname" value="Alejandro"/>
     <parameter name="lastname" value="Fonseca"/>
     <parameter name="zipcode" value="760001"/>
-
-
+    
     <test name="Product purchase">
         <classes>
             <class name="com.globant.tests.PurchaseTest"/>

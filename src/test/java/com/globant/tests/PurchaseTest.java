@@ -11,9 +11,6 @@ public class PurchaseTest extends BaseTest {
     @Parameters({"firstname", "lastname", "zipcode"})
     public void purchaseOneProduct(String firstname, String lastname, String zipCode) {
         String THANK_YOU_MESSAGE = "Thank you for your order!";
-        String EXPECTED_FIRSTNAME = "Alejandro";
-        String EXPECTED_LASTNAME = "Fonseca";
-        String EXPECTED_ZIPCODE = "760001";
 
         inventoryPage.addBackpackToCart();
         CartPage cart = topBarComponent.goToCartPage();
@@ -21,9 +18,9 @@ public class PurchaseTest extends BaseTest {
 
         CheckoutPage checkout = cart.goToCheckoutPage();
         checkout.enterPersonalInfo(firstname, lastname, zipCode);
-        Assert.assertEquals(checkout.getFirstNameInput().getAttribute("value"), EXPECTED_FIRSTNAME);
-        Assert.assertEquals(checkout.getLastNameInput().getAttribute("value"), EXPECTED_LASTNAME);
-        Assert.assertEquals(checkout.getZipCodeInput().getAttribute("value"), EXPECTED_ZIPCODE);
+        Assert.assertEquals(checkout.getFirstNameInput().getAttribute("value"), firstname);
+        Assert.assertEquals(checkout.getLastNameInput().getAttribute("value"), lastname);
+        Assert.assertEquals(checkout.getZipCodeInput().getAttribute("value"), zipCode);
 
         OverviewPage overview = checkout.goToOverviewPage();
         ThankYouPage thankYou = overview.finishCheckout();
